@@ -6,6 +6,8 @@
 
 O projeto busca otimizar o armazenamento de Modelos Ising, os quais descrevem a configuração de alinhamento de spin (-1 ou +1) para cada nó em uma malha 2D ou 3D, através de uma técnica voltada a dados discretos com alta similaridade entre amostras. A técnica de compactação de dados é baseada no armazemaneto integral de apenas algumas amostras do conjunto de dados- suas raízes - , ao passo que as outras são "armazenadas" com base no seu grau de similaridade com as raízes do conjunto. Sob a configuração de grafos, a técnica procura os caminhos mínimos de diferenças entre amostras, tidas como os nós da rede. Em seguida, encontra-se o centroide da Árvore Geradora Mínima, isto é, a amostra de maior similaridade com as demais, de modo a elegê-lo como a raiz do conjunto de dados.
 
+![me](https://github.com/Beprados/FisComp-Projeto/blob/main/Esquema_rede.jpg)
+
 No proecesso de similução de Modelos Ising, à medida que eles convergem a um estado de equilíbrio, eleva-se a tendência de formação de clusters de alinhamento de spins. Dessa forma, seções transversais dos tensores - caso 3D -, ou linhas da matriz resultante - em 2D - passam a compartilhar maior similaridade entre si. Por conta desse fenômeno, supõe-se o alto grau de aplicabilidade da técnica nesses modelos.
 
 ### Objetivos:
