@@ -5,6 +5,10 @@
 
 int main(void) {
 
+    printf("\n************************************************\n");
+    printf("*** Storage time test with parallel approach ***");
+    printf("\n************************************************\n\n");
+
     int num_rows, num_cols;
 
     int** matrix = load_matrix_binary("data/in/original_matrix.bin", &num_rows, &num_cols);

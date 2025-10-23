@@ -5,6 +5,10 @@
 
 int main(void) {
 
+    printf("\n*******************************************************\n");
+    printf("*** Reconstruction time test with parallel approach ***");
+    printf("\n*******************************************************\n\n");
+
     int num_rows, num_cols;
     
     int** matrix = load_data("data/out/opt_vec.bin", &num_rows, &num_cols);

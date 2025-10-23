@@ -43,10 +43,14 @@ void timer_stop(ScopedTimer* t) {
 
 int main(void) {
 
+    printf("\n**********************************************\n");
+    printf("*** Time profile test with serial approach ***");
+    printf("\n**********************************************\n\n");
+
     /* Testing data*/
 
     int num_rows, num_cols;
-    int** matrix = load_matrix_binary(&num_rows, &num_cols, "data/in/original_matrix.bin");
+    int** matrix = load_matrix_binary("data/in/original_matrix.bin", &num_rows, &num_cols);
 
     int num_nodes = num_rows;
     int* nodes = malloc(num_nodes*sizeof(int));
@@ -113,29 +117,24 @@ int main(void) {
     }
     
     // Data reconstruction
-    int flag = 1;
-    int num_threads = omp_get_max_threads();
+    int** rec_matrix;
     {
         TIMER("Data reconstruction");
 
-        int** rec_matrix = reconstruct_matrix(opt);
-        for (int i = 0; i < num_rows; i++) {
-            if (memcmp(rec_matrix[i], matrix[i], num_cols*sizeof(int)) != 0) {
-                flag *= 0;
-            }
-        }
-        free_matrix(rec_matrix, num_rows);
+        rec_matrix = reconstruct_matrix(opt);
 
         TIMER_STOP();
     }
 
-    // Check if the reconstruction was successful
-    printf("\nMatrix succesfully reconstructed: %s\n", flag ? "true" : "false");
-    
-    // Data storage
+    // Storage reduction efficency
+    int flag = 1;
+    for (int i = 0; i < num_rows; i++) {
+        for (int j = 0; j < num_cols; j++) {
+            if (matrix[i][j] != rec_matrix[i][j]) { flag *= 0; break; } // Check if the reconstruction was successful
+        }   
+    }
     if (flag) {
         str_effic(opt, matrix);
-        save_opt_str(opt, "data/out/opt_str.bin");
     }
 
     // Freeing memory
@@ -144,6 +143,7 @@ int main(void) {
     adj_list_free(opt_list);
     free(pred);
     free_matrix(matrix, num_rows);
+    free_matrix(rec_matrix, num_rows);
     opt_str_free(opt);
 
     return 0;

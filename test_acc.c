@@ -5,6 +5,10 @@
 
 int main(void) {
 
+    printf("\n************************************\n");
+    printf("*** Reconstruction accuracy test ***");
+    printf("\n************************************\n\n");
+
     int num_rows, num_cols;
     
     int** rec_matrix = load_data("data/out/opt_vec.bin", &num_rows, &num_cols);
@@ -18,7 +22,7 @@ int main(void) {
         }   
     }
     
-    printf("Matrix was succesfully reconstructed: %s\n\n", flag ? "true" : "false");
+    printf("*** Matrix was succesfully reconstructed: %s\n\n", flag ? "true ***" : "false ***");
     
     free_matrix(rec_matrix, num_rows);
     free_matrix(orig_matrix, num_rows);
