@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "str_reduc.h"
+#include "timer.h"
+#include "timer_macros.h"
 
 int main(void) {
 
@@ -22,7 +24,7 @@ int main(void) {
         }   
     }
     
-    printf("*** Matrix was succesfully reconstructed: %s\n\n", flag ? "true ***" : "false ***");
+    printf("[Matrix was succesfully reconstructed: %s\n\n", flag ? "true]" : "false]");
     
     free_matrix(rec_matrix, num_rows);
     free_matrix(orig_matrix, num_rows);

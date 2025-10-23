@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "str_reduc.h"
+#include "timer.h"
+#include "timer_macros.h"
 
 int main(void) {
 
@@ -12,8 +14,12 @@ int main(void) {
     int num_rows, num_cols;
 
     int** matrix = load_matrix_binary("data/in/original_matrix.bin", &num_rows, &num_cols);
-    
-    store_data(matrix, num_rows, num_cols, "data/out/opt_vec.bin");
+
+    {   
+        TIMER("Storage reduction");
+        store_data(matrix, num_rows, num_cols, "data/out/opt_vec.bin");
+        TIMER_STOP();
+    }
 
     free_matrix(matrix, num_rows);
 

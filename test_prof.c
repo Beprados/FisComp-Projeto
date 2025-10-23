@@ -9,36 +9,8 @@
 #include "heap_graph.h"
 #include "mst.h"
 #include "dequef.h"
-
-// TIMER structure
-typedef struct {
-    struct timeval start;
-    const char* name;
-} ScopedTimer;
-
-// TIMER start
-void timer_start(ScopedTimer* t, const char* name) {
-    t->name = name ? name : "Timer";
-    gettimeofday(&t->start, NULL);
-}
-
-// TIMER stop
-void timer_stop(ScopedTimer* t) {
-    struct timeval end;
-    gettimeofday(&end, NULL);
-
-    long seconds  = end.tv_sec  - t->start.tv_sec;
-    long useconds = end.tv_usec - t->start.tv_usec;
-
-    long total_micro = seconds * 1000000 + useconds;
-
-    printf("[%s] : %ld µs\n", t->name, total_micro);
-}
-
-// Macros to facilitate
-#define TIMER(name) ScopedTimer __timer; timer_start(&__timer, name)
-#define TIMER_STOP() timer_stop(&__timer)
-#define TIMER_AUTO() ScopedTimer __timer; timer_start(&__timer, __func__)
+#include "timer.h"
+#include "timer_macros.h"
 
 
 int main(void) {

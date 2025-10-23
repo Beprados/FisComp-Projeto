@@ -3,6 +3,7 @@
     "files.associations": {
         "stdio.h": "c",
         "adjlist.h": "c",
-        "str_reduc.h": "c"
+        "str_reduc.h": "c",
+        "heap_graph.h": "c"
     }
 }

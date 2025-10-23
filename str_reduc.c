@@ -124,7 +124,7 @@ void save_vec_opt_str(opt_str** opt_vec, int num_elem, const char* filename) {
 
     fclose(f);
 
-    printf("\n*** Storage reduction was successful ***\n\n");
+    printf("\n[Storage reduction was successful]\n\n");
 
 }
 
@@ -190,10 +190,10 @@ void str_effic(opt_str* opt, int** orig_matrix) {
 
     printf("\n\n*** Storage Reduction Status ***\n\n");
 
-    printf("Original matrix size: %d bytes\n", orig_size);
-    printf("Optimal struct size: %d bytes\n", opt_size);
-    printf("Net reduction: %.0f bytes\n", abs_reduc);
-    printf("Relative reduction: %.2f%%\n", 100*rel_reduc);
+    printf("Original matrix size: %.2e bytes\n", (double) orig_size);
+    printf("Optimal struct size: %.2e bytes\n", (double) opt_size);
+    printf("Net reduction: %.2e bytes\n", (double) abs_reduc);
+    printf("Relative reduction: %.2f%%\n\n", 100*rel_reduc);
 
 }
 
@@ -210,7 +210,7 @@ void vec_str_effic(opt_str** opt_vec, int num_elem, int** orig_matrix) {
     float abs_reduc = orig_size-opt_size;
     float rel_reduc = 1.0 - (float) opt_size/orig_size;
 
-    printf("\n********************************\n*** Storage Reduction Status ***\n********************************\n\n");
+    printf("\n\n*** Storage Reduction Status ***\n\n");
 
     printf("Original matrix size: %.2e bytes\n", (double) orig_size);
     printf("Optimal struct size: %.2e bytes\n", (double) opt_size);
@@ -669,7 +669,7 @@ int** load_data(const char* filename, int* p_num_rows, int* p_num_cols) {
         }
     int** matrix = matrix_join(slices, num_slices, *p_num_rows, *p_num_cols);
     
-    printf("\n*** Matrix reconstruction was successful ***\n\n");
+    printf("\n[Matrix reconstruction was successful]\n\n");
 
     /////////////////
     //* Free zone *//
