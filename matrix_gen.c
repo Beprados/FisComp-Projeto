@@ -28,12 +28,18 @@ int** matrix_binary(int num_rows, int num_cols) {
 
 int main(void) {
 
-    printf("Type number of rows: ");
-    int num_rows; scanf("%d", &num_rows);
+    int num_rows = 0;
+    while(num_rows <= 0) {
+        printf("Type number of rows (> 0 and < 10^4) : ");
+        scanf("%d", &num_rows);
+    }
 
-    printf("Type number of columns: ");
-    int num_cols; scanf("%d", &num_cols);
-
+    int num_cols = 0;
+    while(num_cols <= 0) {
+        printf("Type number of columns (> 0 and < 10^4): ");
+        scanf("%d", &num_cols);
+    }
+    
     int** matrix = matrix_binary(num_rows, num_cols);
 
     save_matrix_binary(matrix, num_rows, num_cols, "data/in/original_matrix.bin");
